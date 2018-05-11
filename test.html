@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://cdn.bootcss.com/ace/1.2.4/ace.js"></script><!--编辑器的最主要文件-->
+    <script src="http://cdn.bootcss.com/ace/1.2.4/ext-language_tools.js"></script><!--提供代码提示和自动补全的插件-->
+    <script src="http://cdn.bootcss.com/ace/1.2.4/ext-old_ie.js"></script><!--兼容旧版本IE-->
+    <script src="http://cdn.bootcss.com/ace/1.2.4/theme-monokai.js"></script><!--编辑器的主题插件 好看啊！-->
+    <style type="text/css" media="screen">
+        .content{
+            background-color: #fff;
+            margin-top: 36px;
+        }
+        .wrap{
+            margin-bottom: 24px;
+            border-radius: 3px;
+            border: 1px solid #C3CCD0;
+            background: #EEE;
+            overflow: hidden;
+        }
+        #compile-editor {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="wrap" id="compile-editor-div">
+        <div id="compile-editor" name="" class="form-control">
+            /**
+            * Created on: 2016年09月16日 10:52:56
+            * Author: Guest
+            * Copyright (c) 2016, tool.usta.wiki , All Rights Reserved.
+            */
+            #include &lt;stdio.h&gt;
+
+            int main()
+            {
+            /* 我的第一个 C 程序 */
+            printf(&quot;Hello, World! \n&quot;);
+            return 0;
+            }
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var editor = ace.edit("compile-editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/javascript");
+    editor.$blockScrolling = Infinity;
+    editor.setFontSize(16);
+    editor.session.setMode("ace/mode/c_cpp");
+    editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true
+    });
+    editor.setTheme("ace/theme/monokai");
+</script>
+</body>
+</html>
