@@ -109,12 +109,12 @@
     }
 
     .ace_highlight-marker {
-       position: absolute; /* without this positions will be erong */
-       background: #abc; /* color */ 
-       z-index: 1000; /* in front of all other markers */ 
-   }
+     position: absolute; /* without this positions will be erong */
+     background: #abc; /* color */ 
+     z-index: 1000; /* in front of all other markers */ 
+ }
 
-   .editor-footer{
+ .editor-footer{
     width: 100%;
     overflow: hidden;
     /*background: #fff;*/
@@ -144,7 +144,7 @@
 
 .editor-footer button:hover {
     background-color: #ddd;
-        color: dodgerblue;
+    color: dodgerblue;
 }
 
 </style>
@@ -162,27 +162,42 @@
         <section class="main-editor">
             <div class="container">
                 <div class="editor-wrapper">
-                    <div id="editor">function foo(items) {
-                        var x = "All this is syntax highlighted";
-                        var x = "All this is syntax highlighted";
-                        var x = "All this is syntax highlighted";
-                        var x = "All this is syntax highlighted";
-                        var x = "All this is syntax highlighted";
-                        return x;
-                    }</div>
-                </div>
-                
-                <div class="editor-footer">
-                    <div class="editor-footer-right">
-                        <button class="btn-blue" id="submit"> Submit </button>
-                    </div>
-                </div>
+                    <div id="editor">
+                    $(function() {
+                        var editor = ace.edit("editor");
+                        // alert(editor.getValue());
+                    });
+
+                    var editor = ace.edit("editor");
+                    editor.setTheme("ace/theme/textmate");//clouds textmate xcode monokai
+                    editor.getSession().setMode("ace/mode/javascript");
+
+
+                    var Range = require("ace/range").Range;
+                    editor.session.addMarker(new Range(3, 0, 3, 1), 'ace_highlight-marker', 'fullLine');
+
+                    editor.session.setOption("useWorker", false);
+                    editor.getSession().setAnnotations([{
+                    row:3,
+                    column:0,
+                    text: "Error Message",
+                    type: "error",
+                }]);
+
             </div>
-        </section>
+        </div>
+
+        <div class="editor-footer">
+            <div class="editor-footer-right">
+                <button class="btn-blue" id="submit"> Submit </button>
+            </div>
+        </div>
     </div>
-    <script src="https://ace.c9.io/build/src/ace.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript">
-        var editor = ace.edit("editor");
+</section>
+</div>
+<script src="https://ace.c9.io/build/src/ace.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    var editor = ace.edit("editor");
         editor.setTheme("ace/theme/textmate");//clouds textmate xcode monokai
         editor.getSession().setMode("ace/mode/javascript");
 
