@@ -189,13 +189,15 @@
 
         <div class="editor-footer">
             <div class="editor-footer-right">
-                <button class="btn-blue" id="submit"> Submit </button>
+                <button class="btn-blue" id="btn_submit" onclick="lex_analyze()"> Submit </button>
             </div>
         </div>
     </div>
 </section>
 </div>
-<script src="https://ace.c9.io/build/src/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ace.c9.io/build/src/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/lex.js" type="text/javascript" charset="utf-8"></script>
+
 <script type="text/javascript">
     var editor = ace.edit("editor");
         editor.setTheme("ace/theme/textmate");//clouds textmate xcode monokai
@@ -216,7 +218,27 @@
         $(function() {
             var editor = ace.edit("editor");
             // alert(editor.getValue());
+            var btn_submit = $("#btn_submit");
+            // btn_submit.click(lex_analyze());
         });
+
+        function lex_analyze() {
+            var editor = ace.edit("editor");
+            var raw_code = editor.getValue();
+            $client.lex_analyze(raw_code,function (ret,err) {
+
+                var code_json = {"code": "\"" + raw_code + "\""};
+
+                console.log(code_json);
+
+                if(ret) {
+                    if (ret.code == 200) {
+                        alert(ret);
+                    }
+                }
+            });
+        }
+
 
 
 
